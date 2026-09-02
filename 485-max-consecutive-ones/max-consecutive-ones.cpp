@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //leetcode
     int findMaxConsecutiveOnes(vector<int>& nums) {
         int count = 0;
         int max1 = INT_MIN;
