@@ -1,4 +1,48 @@
-// 
+// class Solution {
+// public:
+//     void bfs(vector<vector<pair<int,int>>>&graph,int src,int dst,int k,vector<int>&dist){
+//         priority_queue<tuple<int,int,int>>pq;
+//         dist[src]=0;
+//         pq.push({src,0,-1});
+//         while(!pq.empty()){
+//             auto [u,cost,stops] = pq.top();
+//             pq.pop();
+
+//             for(auto e:graph[u]){
+//                 int v = e.first;
+//                 int wt = e.second;
+
+//                 if(dist[v]>cost+wt && stops+1<=k){
+//                     dist[v]=cost+wt;
+//                     pq.push({v,dist[v],stops+1});
+//                 }
+//             }
+
+//         }
+//     }
+//     int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
+//         vector<vector<pair<int,int>>>graph(n);
+
+//         for(auto edge:flights){
+//             int u = edge[0];
+//             int v = edge[1];
+//             int wt = edge[2];
+
+//             graph[u].push_back({v,wt});
+//         }
+
+//         vector<int>dist(n,INT_MAX);
+//         bfs(graph,src,dst,k,dist);
+//         if(dist[dst]!=INT_MAX){
+//             return dist[dst];
+//         }else{
+//             return -1;
+//         }
+
+        
+//     }
+// };
+
 
 class Solution {
 public:
