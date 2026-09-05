@@ -46,14 +46,9 @@
 
 class Solution {
 public:
-    void bfs(vector<vector<pair<int,int>>>&graph, int src, int dst, int k,
-             vector<vector<int>>&dist) {
+    void bfs(vector<vector<pair<int,int>>>&graph, int src, int dst, int k,vector<vector<int>>&dist) {
 
-        priority_queue<
-            tuple<int,int,int>,
-            vector<tuple<int,int,int>>,
-            greater<tuple<int,int,int>>
-        > pq;
+        priority_queue<tuple<int,int,int>,vector<tuple<int,int,int>>,greater<tuple<int,int,int>>> pq;
 
         dist[src][0] = 0;
         pq.push({0, src, 0});
@@ -66,8 +61,7 @@ public:
                 int v = e.first;
                 int wt = e.second;
 
-                if(stops + 1 <= k + 1 &&
-                   dist[v][stops + 1] > cost + wt) {
+                if(stops + 1 <= k + 1 && dist[v][stops + 1] > cost + wt) {
 
                     dist[v][stops + 1] = cost + wt;
                     pq.push({cost + wt, v, stops + 1});
@@ -95,9 +89,9 @@ public:
 
         int ans = INT_MAX;
 
-        for(int i = 0; i <= k + 1; i++)
+        for(int i = 0; i <= k + 1; i++){
             ans = min(ans, dist[dst][i]);
-
+        }
         return ans == INT_MAX ? -1 : ans;
     }
 };
