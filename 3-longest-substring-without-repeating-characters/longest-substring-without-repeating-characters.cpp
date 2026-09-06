@@ -11,9 +11,9 @@ public:
                 mp[s[i]]=i;
                 count++;
             }else{
-                left = max(left,mp[s[i]]+1);
+                left = max(left,mp[s[i]]);
                 mp[s[i]]=i;
-                count = i-left+1;
+                count = i-left;
             }
             max1 = max(max1,count);
         }
