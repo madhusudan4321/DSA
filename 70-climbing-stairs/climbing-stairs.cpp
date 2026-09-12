@@ -1,12 +1,17 @@
 class Solution {
 public:
-    int climbStairs(int n) {
-        vector<int>ans(n+1,0);
-        ans[0]=1;
-        ans[1]=1;
-        for(int i=2;i<=n;i++){
-            ans[i]=ans[i-1]+ans[i-2];
+    int DP(int n,vector<int>&vec){
+        if(n==0 || n==1) return 1;
+        if(vec[n]!=-1){
+            return vec[n];
         }
-        return ans[n];
+        vec[n]= DP(n-1,vec)+DP(n-2,vec);
+        return vec[n];
+    }
+    int climbStairs(int n) {
+        vector<int>vec(n+1,-1);
+        int ans = DP(n,vec);
+        return ans;
+
     }
 };
