@@ -31,7 +31,6 @@ public:
                     right--;
                 }
             }
-
         }
         for(auto e: st){
             ans.push_back(e);
