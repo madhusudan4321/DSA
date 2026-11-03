@@ -2,12 +2,11 @@ class Solution {
 public:
     int minMergedInteger(vector<int>& nums) {
         int mini = INT_MAX;
-        for(int i=0;i<nums.size()-1;i+=2){
-            string n = "";
-            n += to_string(nums[i]);
-            n+= to_string(nums[i+1]);
-
-            mini = min(mini,stoi(n));
+        for(int i=1;i<nums.size();i+=2){
+            string n = to_string(nums[i]);
+            int first = nums[i-1];
+            int num = first*pow(10,n.size());
+            mini = min(mini,num+nums[i]);
         }
         return mini;
     }
