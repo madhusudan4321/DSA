@@ -11,26 +11,23 @@
  */
 class Solution {
 public:
-    bool bfs(TreeNode* root){
-        if(root==NULL) return false;
-        queue<pair<TreeNode*,TreeNode*>>q;
-        q.push({root->left,root->right});
-        while(!q.empty()){
-            pair<TreeNode*,TreeNode*>it = q.front();
-            q.pop();
-            TreeNode* left = it.first;
-            TreeNode* right = it.second;
-            if(left==NULL && right==NULL) continue;
-            if(left==NULL || right==NULL) return false;
-            if(left->val != right->val){
-                return false;
-            }
-            q.push({left->left,right->right});
-            q.push({left->right,right->left});
+    bool dfs(TreeNode* root1,TreeNode* root2){
+        if(root1==NULL && root2==NULL){
+            return true;
         }
-        return true;
+        if(root1==NULL || root2==NULL){
+            return false;
+        }
+        if(root1->val!=root2->val){
+            return false;
+        }
+
+        bool ans1 = dfs(root1->left,root2->right);
+        bool ans2 = dfs(root1->right,root2->left);
+
+        return ans1&&ans2;
     }
     bool isSymmetric(TreeNode* root) {
-        return bfs(root);
+        return dfs(root->left,root->right);
     }
 };
