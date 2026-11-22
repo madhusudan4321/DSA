@@ -21,7 +21,6 @@ public:
     }
     bool isBalanced(TreeNode* root) {
         if(root==NULL || (root->left==NULL && root->right==NULL)) return true;
-        TreeNode* temp = root;
 
         int h1 = dfs(root->left);
         int h2 = dfs(root->right);
@@ -30,8 +29,8 @@ public:
             return false;
         }
         
-        bool ans1 = isBalanced(temp->left);
-        bool ans2 = isBalanced(temp->right);
+        bool ans1 = isBalanced(root->left);
+        bool ans2 = isBalanced(root->right);
         
         return ans1&&ans2;
     }
