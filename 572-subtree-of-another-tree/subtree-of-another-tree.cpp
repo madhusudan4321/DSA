@@ -26,31 +26,16 @@ public:
 
     }
     bool isSubtree(TreeNode* root, TreeNode* subRoot) {
-        queue<TreeNode*>q;
-        q.push(root);
-        q.push(NULL);
-        bool ans=false;
-        while(!q.empty()){
-            TreeNode* temp = q.front();
-            q.pop();
-            if(temp!=NULL && temp->val==subRoot->val){
-                ans=dfs(temp,subRoot);
-                if(ans) return ans;
-            }
-            if(temp==NULL){
-                if(!q.empty()){
-                    q.push(NULL);
-                }
-            }
+        if(root==NULL) return false;
 
-            if(temp!=NULL && temp->left!=NULL){
-                q.push(temp->left);
-            }
-            if(temp!=NULL && temp->right!=NULL){
-                q.push(temp->right);
-            }
+        bool found = false;
+        if(root->val==subRoot->val){
+            found = dfs(root,subRoot);
+            if(found) return found;
         }
-        return ans;
+        bool left = isSubtree(root->left,subRoot);
+        bool right = isSubtree(root->right,subRoot);
 
+        return left||right;
     }
 };
