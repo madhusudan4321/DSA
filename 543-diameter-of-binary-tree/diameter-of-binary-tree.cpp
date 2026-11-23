@@ -18,20 +18,14 @@ public:
         int ans1 = dfs(root->left);
         int ans2 = dfs(root->right);
 
+        maxi = max(maxi,ans1+ans2);
+
         return max(ans1,ans2)+1;
     }
     int diameterOfBinaryTree(TreeNode* root) {
         if(root==NULL) return 0;
         
-        int ans1 = dfs(root->left);
-        int ans2 = dfs(root->right);
-
-        maxi = max(maxi,ans1+ans2);
-
-        int left = diameterOfBinaryTree(root->left);
-        int right = diameterOfBinaryTree(root->right);
-
-        
-        return max(maxi,max(left,right));
+        dfs(root);
+        return maxi;
     }
 };
